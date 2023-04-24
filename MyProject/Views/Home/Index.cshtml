@@ -1,0 +1,74 @@
+﻿@model DataModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*<- Form Model-->
+    <form asp-controller="Home" asp-action="DataPractice" method="post">
+    
+@Html.TextBoxFor(x=>x.Name);
+@Html.TextBoxFor(x=>x.Address);
+@Html.TextBoxFor(x=>x.PhoneNumber);
+<button type="submit" >Save</button>
+</form>*@
+
+
+
+@*<------------Ajax---------------->*@
+
+<input type="text" id="name" />
+<input type="text" id="address" />
+<input type="number" id="phonenumber" />
+<input  type="file" value="Choose File" class="blue-button me-4 btnFileUpload"/>
+<span id="spnfilePath"></span>
+<input type="button" id="fileUpload" style="display:none"/>
+<button type="button" id="btn">Save</button>
+<script src="/vendor/jquery/jquery.min.js"></script>
+
+<script type="text/javascript">
+    
+
+
+
+$("#btn").click(function() {
+debugger;
+var name = $("#name").val();
+var address = $("#address").val();
+var phone = $("#phonenumber").val();
+
+//Ajax
+    var json = {
+        "Name": name,
+        "Address": address,
+        "PhoneNumber": parseInt(phone) 
+
+    };
+    $.ajax({
+            url:"/Home/DataAjax",
+            method:"POST",
+            data:json,
+            success: function(data) {
+                debugger;
+                $("body").append(data);
+           // alert(true);
+
+        },
+        error: function(error) {
+           // alert(false);
+        }
+
+
+
+    });
+});
+
+
+</script>
+
+    
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+﻿<h1>POOJA</h1>
+
+
+
+<input  type="text" id="name"/>
+<input  type="text" id="description"/>
+<input  type="text" id="pincode"/>
+<button type="button" id="save">Submit </button>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+$("#save").click(function() {
+    var Name = $("#name").val();
+    var Description = $("#description").val();
+    var Pincode = $("#pincode").val();
+
+
+
+ var json = {
+        "Name": Name,
+        "Description":Description,
+        "Pincode": parseInt(Pincode) 
+
+    };
+    $.ajax({
+            url:"/Home/DataAjax",
+            method:"POST",
+            data:json,
+            success: function(data) {
+                debugger;
+           // alert(true);
+
+        },
+        error: function(error) {
+           // alert(false);
+        }
+
+
+
+    });
+    });
+
+</script>
+    
